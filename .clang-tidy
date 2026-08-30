@@ -1,0 +1,69 @@
+Checks: >
+    bugprone-*,
+    performance-*,
+    portability-*,
+    readability-*,
+    modernize-*,
+    -modernize-avoid-c-arrays,
+    -modernize-use-trailing-return-type,
+    -readability-identifier-length,
+    -readability-uppercase-literal-suffix,
+    -readability-magic-numbers,
+    -readability-convert-member-functions-to-static,
+    -bugprone-easily-swappable-parameters,
+    -bugprone-narrowing-conversions,
+    -bugprone-integer-division,
+    -readability-inconsistent-declaration-parameter-name,
+    -bugprone-exception-escape,
+    -portability-avoid-pragma-once
+
+WarningsAsErrors: "*"
+
+HeaderFilterRegex: '.*[\\/]OpenGL-model-loader[\\/](include|src)[\\/].*'
+
+FormatStyle: file
+
+CheckOptions:
+    # Classes
+    - key: readability-identifier-naming.ClassCase
+      value: CamelCase
+
+    # Structs
+    - key: readability-identifier-naming.StructCase
+      value: CamelCase
+
+    # Functions
+    - key: readability-identifier-naming.FunctionCase
+      value: camelBack
+
+    # Member functions / methods
+    - key: readability-identifier-naming.MethodCase
+      value: camelBack
+
+    # Variables
+    - key: readability-identifier-naming.VariableCase
+      value: camelBack
+
+    # Private member variables
+    - key: readability-identifier-naming.PrivateMemberPrefix
+      value: m_
+
+    # Constants / constexpr variables
+    - key: readability-identifier-naming.ConstantCase
+      value: CamelCase
+
+    # Enums
+    - key: readability-identifier-naming.EnumCase
+      value: CamelCase
+
+    # Enum values
+    - key: readability-identifier-naming.EnumConstantCase
+      value: CamelCase
+
+    # Namespaces
+    - key: readability-identifier-naming.NamespaceCase
+      value: lower_case
+
+      # Preprocessor macros
+    - key: readability-identifier-naming.MacroDefinitionCase
+      value: UPPER_CASE

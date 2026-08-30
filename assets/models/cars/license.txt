@@ -1,0 +1,8 @@
+Model Information:
+* title:	Low poly cars
+* source:	https://sketchfab.com/3d-models/low-poly-cars-b98425ae5b304be7af2918ad8d1f93db
+* author:	Cosmo (https://sketchfab.com/cosmoart)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
