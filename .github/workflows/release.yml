@@ -1,0 +1,47 @@
+name: Release Build
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build release package
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        shell: powershell
+        run: choco install mingw --no-progress --yes
+
+      - name: Set up vcpkg
+        shell: powershell
+        run: .\scripts\Setup-vcpkg.ps1
+
+      - name: Build release and install final_build
+        shell: powershell
+        run: .\scripts\Release.ps1
+
+      - name: Zip final_build
+        shell: powershell
+        run: Compress-Archive -Path .\final_build\* -DestinationPath .\final_build.zip -CompressionLevel Optimal
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: final_build
+          path: final_build.zip
+          if-no-files-found: error
+
+      - name: Upload package to GitHub release
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" .\final_build.zip --clobber

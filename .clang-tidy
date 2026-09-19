@@ -15,11 +15,14 @@ Checks: >
     -bugprone-integer-division,
     -readability-inconsistent-declaration-parameter-name,
     -bugprone-exception-escape,
-    -portability-avoid-pragma-once
+    -portability-avoid-pragma-once,
+    -clang-analyzer-optin.core.EnumCastOutOfRange
 
 WarningsAsErrors: "*"
 
 HeaderFilterRegex: '.*[\\/]OpenGL-model-loader[\\/](include|src)[\\/].*'
+
+ExcludeHeaderFilterRegex: '.*[\\/]vcpkg_installed[\\/].*'
 
 FormatStyle: file
 

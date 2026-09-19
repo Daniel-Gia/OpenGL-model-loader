@@ -20,6 +20,15 @@ if (-not (Get-Command clang-tidy -ErrorAction SilentlyContinue)) {
     exit 1
 }
 
+if (-not (Get-Command g++.exe -ErrorAction SilentlyContinue)) {
+    Write-Host "g++.exe not found. Install MinGW and make sure it is in PATH." -ForegroundColor Red
+    exit 1
+}
+
+$ClangTidyArguments = @(
+    "--extra-arg-before=--target=x86_64-w64-windows-gnu"
+)
+
 $Files = Get-ChildItem `
     -Path (Join-Path $ProjectRoot "src") `
     -Recurse `
@@ -39,7 +48,8 @@ foreach ($File in $Files) {
     clang-tidy `
         $File.FullName `
         -p $BuildDir `
-        --fix
+        --fix `
+        $ClangTidyArguments
 
     if ($LASTEXITCODE -ne 0) {
         $Failed = $true

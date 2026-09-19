@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    name: Check format
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install LLVM
+        shell: powershell
+        run: |
+          choco install llvm --no-progress --yes
+          Add-Content $env:GITHUB_PATH "C:\Program Files\LLVM\bin"
+
+      - name: Run format check
+        shell: powershell
+        run: .\scripts\CheckFormat.ps1
+
+  lint:
+    name: Check lint
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        shell: powershell
+        run: choco install mingw --no-progress --yes
+
+      - name: Set up vcpkg
+        shell: powershell
+        run: .\scripts\Setup-vcpkg.ps1
+
+      - name: Configure project
+        shell: powershell
+        run: .\scripts\Configure.ps1
+
+      - name: Install LLVM
+        shell: powershell
+        run: |
+          choco install llvm --no-progress --yes
+          Add-Content $env:GITHUB_PATH "C:\Program Files\LLVM\bin"
+
+      - name: Run lint check
+        shell: powershell
+        run: .\scripts\CheckLint.ps1
+
+  build:
+    name: Test Build
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install build tools
+        shell: powershell
+        run: choco install mingw --no-progress --yes
+
+      - name: Set up vcpkg
+        shell: powershell
+        run: .\scripts\Setup-vcpkg.ps1
+
+      - name: Configure project
+        shell: powershell
+        run: .\scripts\Configure.ps1
+
+      - name: Build project
+        shell: powershell
+        run: .\scripts\Build.ps1
