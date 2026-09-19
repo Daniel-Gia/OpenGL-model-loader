@@ -20,14 +20,6 @@ Install these tools before building:
 - LLVM, including `clang-format` and `clang-tidy`
 - PowerShell
 
-If you use Chocolatey, install the required tools with:
-
-```powershell
-choco install git cmake mingw llvm --yes
-```
-
-Restart your terminal after installing the tools so the updated `PATH` is available.
-
 ## Setup
 
 Clone the repository:
@@ -88,6 +80,18 @@ final_build\
 
 ## Code Quality
 
+### Install LLVM with WinGet: 
+<blockquote>
+This is only needed for formatting and linting if you do not plan to do this skip this step
+</blockquote>
+
+```powershell
+winget install --id LLVM.LLVM --exact
+```
+
+Restart your terminal after installing the tools so the updated `PATH` is available.
+
+### Code Quality Scripts
 Run the formatting check:
 ```powershell
 .\scripts\CheckFormat.ps1
