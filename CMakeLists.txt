@@ -85,9 +85,7 @@ add_custom_target(CopyAssets ALL
 
 add_dependencies(${PROJECT_NAME} CopyAssets)
 
-install(TARGETS ${PROJECT_NAME}
-    RUNTIME DESTINATION final_build
-)
-
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/Shaders DESTINATION final_build)
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/assets DESTINATION final_build)
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION .)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/Shaders DESTINATION .)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/assets DESTINATION .)
+install(FILES "${CMAKE_SOURCE_DIR}/LICENSE" DESTINATION .)
