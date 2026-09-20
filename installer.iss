@@ -1,6 +1,6 @@
 [Setup]
 AppName=OpenGL Model Loader
-AppVersion=0.1.0
+AppVersion=0.1.1
 AppPublisher=Daniel Giacobelli
 
 DefaultDirName={autopf}\OpenGLModelLoader
