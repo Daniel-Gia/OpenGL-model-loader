@@ -19,7 +19,7 @@ jobs:
 
       - name: Install build tools
         shell: powershell
-        run: choco install mingw --no-progress --yes
+        run: choco install mingw innosetup --no-progress --yes
 
       - name: Set up vcpkg
         shell: powershell
@@ -28,6 +28,10 @@ jobs:
       - name: Build release and install final_build
         shell: powershell
         run: .\scripts\Release.ps1
+
+      - name: Build installer
+        shell: powershell
+        run: .\scripts\MakeInstaller.ps1
 
       - name: Zip final_build
         shell: powershell
@@ -44,4 +48,4 @@ jobs:
         shell: powershell
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ github.event.release.tag_name }}" .\final_build.zip --clobber
+        run: gh release upload "${{ github.event.release.tag_name }}" .\final_build.zip .\installer\OpenGL-Model-Loader-Installer.exe --clobber
