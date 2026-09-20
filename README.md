@@ -10,6 +10,11 @@ The project uses GLFW, GLAD, GLM, stb, and fastgltf, with CMake and vcpkg handli
 ## Demo
 [Demo](https://github.com/user-attachments/assets/6ad7a95b-fc89-4454-bb4f-96ead02c29fc)
 
+## Download And Run
+If you only want to use the application, go to the [GitHub Releases](https://github.com/Daniel-Gia/OpenGL-model-loader/releases) page and download one of these files:
+- **Installer:** `OpenGL-Model-Loader-Installer.exe` installs the application and creates shortcuts.
+- **ZIP:** `final_build.zip` is a portable version. Extract it and run `OpenGL-Model-Loader.exe`.
+
 ## Requirements
 Install these tools before building:
 
